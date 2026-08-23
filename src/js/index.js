@@ -1,4 +1,4 @@
-import { fetchUserProfile } from './api.js';
+import { fetchUserProfile, fetchGithubUserRepos } from './api.js';
 import { validateUserInput, validateApiResponse } from './validators.js';
 import { 
     getDOMElements, 
@@ -25,6 +25,8 @@ btnSearch.addEventListener('click', async () => {
 
         
         const userData = await fetchUserProfile(userName);
+        const userRepos = await fetchGithubUserRepos(userName);
+        console.log(userRepos);
 
         
         const apiValidation = validateApiResponse(userData);
@@ -35,7 +37,7 @@ btnSearch.addEventListener('click', async () => {
         }
 
         
-        renderUserProfile(userData, profileResults);
+        renderUserProfile(userData, userRepos, profileResults);
         console.log(userData);
 
     } catch (error) {

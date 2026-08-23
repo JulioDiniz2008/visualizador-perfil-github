@@ -13,3 +13,11 @@ export async function fetchUserProfile(userName) {
         throw new Error(`Erro ao buscar perfil do usuário: ${error.message}`);
     }
 }
+
+export async function fetchGithubUserRepos(UserName) {
+    const response = await fetch(`${BASE_URL}/users/${UserName}/repos?per_page=10&sort=created`);
+    if (!response.ok) {
+        throw new Error("Repositórios não encontrados");
+    }
+    return await response.json();
+}
