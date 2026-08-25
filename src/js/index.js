@@ -46,3 +46,10 @@ btnSearch.addEventListener('click', async () => {
         clearResults(profileResults);
     }
 });
+
+
+inputSearch.addEventListener('keyup' , (event) => {
+    if(event.key === 'Enter') {
+        btnSearch.click();
+    }
+});
